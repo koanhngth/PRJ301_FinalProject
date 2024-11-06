@@ -52,6 +52,22 @@ public class AccountDAO extends dal.DBContext {
         return null;
     }
 
+     public boolean getEmail(String email, String user) {
+        String sql = "SELECT * FROM Users WHERE email = ? AND username = ? ";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, email);
+            stmt.setString(2, user);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+     
     public boolean addAccount(Account account) {
         String query = "INSERT INTO [dbo].[Users] ([username], [password], [email], [role]) VALUES (?, ?, ?, ?)";
 
@@ -69,6 +85,23 @@ public class AccountDAO extends dal.DBContext {
         }
 
         return false;
+    }
+    public void updatePassword(String pass , String user) {
+        String sql = "UPDATE [dbo].[Users] "
+                + "SET  password = ?"
+                + "WHERE username = ?";
+
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, pass);
+            st.setString(2, user);
+            
+
+            int rowsAffected = st.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace(); // Ghi lại lỗi để dễ dàng kiểm tra
+        }
     }
   
     

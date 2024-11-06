@@ -60,6 +60,8 @@ public class UserDAO extends DBContext {
             e.printStackTrace(); // Ghi lại lỗi để dễ dàng kiểm tra
         }
     }
+    
+        
 
     public void addNewUser(User em) {
         String sql = "INSERT INTO [dbo].[Users] "
