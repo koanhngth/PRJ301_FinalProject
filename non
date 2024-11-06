@@ -1,0 +1,278 @@
+﻿USE [master]
+GO
+/****** Object:  Database [Library]    Script Date: 06/11/2024 11:24:46 SA ******/
+CREATE DATABASE [Library]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'Library', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER01\MSSQL\DATA\Library.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'Library_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.MSSQLSERVER01\MSSQL\DATA\Library_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
+GO
+ALTER DATABASE [Library] SET COMPATIBILITY_LEVEL = 160
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [Library].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [Library] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [Library] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [Library] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [Library] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [Library] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [Library] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [Library] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [Library] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [Library] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [Library] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [Library] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [Library] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [Library] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [Library] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [Library] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [Library] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [Library] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [Library] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [Library] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [Library] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [Library] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [Library] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [Library] SET RECOVERY FULL 
+GO
+ALTER DATABASE [Library] SET  MULTI_USER 
+GO
+ALTER DATABASE [Library] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [Library] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [Library] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [Library] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [Library] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [Library] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+EXEC sys.sp_db_vardecimal_storage_format N'Library', N'ON'
+GO
+ALTER DATABASE [Library] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [Library] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [Library]
+GO
+/****** Object:  Table [dbo].[Books]    Script Date: 06/11/2024 11:24:47 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Books](
+	[book_id] [int] IDENTITY(1,1) NOT NULL,
+	[title] [varchar](255) NOT NULL,
+	[author] [varchar](255) NOT NULL,
+	[year_published] [int] NOT NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[quantity_available] [int] NULL,
+	[image_url] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[book_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Borrowings]    Script Date: 06/11/2024 11:24:47 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Borrowings](
+	[loan_id] [int] IDENTITY(1,1) NOT NULL,
+	[user_id] [int] NULL,
+	[book_id] [int] NULL,
+	[loan_date] [datetime] NULL,
+	[return_date] [datetime] NULL,
+	[status] [varchar](10) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[loan_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Cart]    Script Date: 06/11/2024 11:24:47 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cart](
+	[cart_id] [int] IDENTITY(1,1) NOT NULL,
+	[user_id] [int] NULL,
+	[book_id] [int] NULL,
+	[quantity] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[cart_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Favorites]    Script Date: 06/11/2024 11:24:47 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Favorites](
+	[favorite_id] [int] IDENTITY(1,1) NOT NULL,
+	[user_id] [int] NULL,
+	[book_id] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[favorite_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Users]    Script Date: 06/11/2024 11:24:47 SA ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Users](
+	[user_id] [int] IDENTITY(1,1) NOT NULL,
+	[username] [varchar](255) NOT NULL,
+	[password] [varchar](255) NOT NULL,
+	[email] [varchar](255) NOT NULL,
+	[role] [varchar](10) NOT NULL,
+	[created_at] [datetime] NULL,
+	[updated_at] [datetime] NULL,
+	[account] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[user_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[Books] ON 
+
+INSERT [dbo].[Books] ([book_id], [title], [author], [year_published], [created_at], [updated_at], [quantity_available], [image_url]) VALUES (1, N'The Great Gatsby', N'F. Scott Fitzgerald', 1925, CAST(N'2024-11-04T14:41:22.230' AS DateTime), CAST(N'2024-11-04T14:41:22.230' AS DateTime), NULL, NULL)
+INSERT [dbo].[Books] ([book_id], [title], [author], [year_published], [created_at], [updated_at], [quantity_available], [image_url]) VALUES (2, N'To Kill a Mockingbird', N'Harper Lee', 1960, CAST(N'2024-11-04T14:41:22.230' AS DateTime), CAST(N'2024-11-04T14:41:22.230' AS DateTime), NULL, NULL)
+INSERT [dbo].[Books] ([book_id], [title], [author], [year_published], [created_at], [updated_at], [quantity_available], [image_url]) VALUES (3, N'1984', N'George Orwell', 1949, CAST(N'2024-11-04T14:41:22.230' AS DateTime), CAST(N'2024-11-04T14:41:22.230' AS DateTime), NULL, NULL)
+INSERT [dbo].[Books] ([book_id], [title], [author], [year_published], [created_at], [updated_at], [quantity_available], [image_url]) VALUES (4, N'Pride and Prejudice', N'Jane Austen', 1813, CAST(N'2024-11-04T14:41:22.230' AS DateTime), CAST(N'2024-11-04T14:41:22.230' AS DateTime), NULL, NULL)
+INSERT [dbo].[Books] ([book_id], [title], [author], [year_published], [created_at], [updated_at], [quantity_available], [image_url]) VALUES (5, N'The Catcher in the Rye', N'J.D. Salinger', 1951, CAST(N'2024-11-04T14:41:22.230' AS DateTime), CAST(N'2024-11-04T14:41:22.230' AS DateTime), NULL, NULL)
+SET IDENTITY_INSERT [dbo].[Books] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Borrowings] ON 
+
+INSERT [dbo].[Borrowings] ([loan_id], [user_id], [book_id], [loan_date], [return_date], [status]) VALUES (1, 2, 1, CAST(N'2024-11-04T14:41:36.513' AS DateTime), NULL, N'borrowed')
+INSERT [dbo].[Borrowings] ([loan_id], [user_id], [book_id], [loan_date], [return_date], [status]) VALUES (2, 3, 2, CAST(N'2024-11-04T14:41:36.513' AS DateTime), NULL, N'borrowed')
+INSERT [dbo].[Borrowings] ([loan_id], [user_id], [book_id], [loan_date], [return_date], [status]) VALUES (3, 4, 3, CAST(N'2024-11-04T14:41:36.513' AS DateTime), CAST(N'2024-11-04T14:41:36.513' AS DateTime), N'returned')
+INSERT [dbo].[Borrowings] ([loan_id], [user_id], [book_id], [loan_date], [return_date], [status]) VALUES (4, 2, 4, CAST(N'2024-11-04T14:41:36.513' AS DateTime), NULL, N'borrowed')
+INSERT [dbo].[Borrowings] ([loan_id], [user_id], [book_id], [loan_date], [return_date], [status]) VALUES (5, 5, 5, CAST(N'2024-11-04T14:41:36.513' AS DateTime), CAST(N'2024-11-04T14:41:36.513' AS DateTime), N'returned')
+SET IDENTITY_INSERT [dbo].[Borrowings] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Cart] ON 
+
+INSERT [dbo].[Cart] ([cart_id], [user_id], [book_id], [quantity]) VALUES (1, 2, 1, 2)
+INSERT [dbo].[Cart] ([cart_id], [user_id], [book_id], [quantity]) VALUES (2, 3, 2, 1)
+INSERT [dbo].[Cart] ([cart_id], [user_id], [book_id], [quantity]) VALUES (3, 4, 3, 3)
+INSERT [dbo].[Cart] ([cart_id], [user_id], [book_id], [quantity]) VALUES (4, 5, 4, 1)
+INSERT [dbo].[Cart] ([cart_id], [user_id], [book_id], [quantity]) VALUES (5, 1, 5, 5)
+SET IDENTITY_INSERT [dbo].[Cart] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Favorites] ON 
+
+INSERT [dbo].[Favorites] ([favorite_id], [user_id], [book_id]) VALUES (1, 2, 1)
+INSERT [dbo].[Favorites] ([favorite_id], [user_id], [book_id]) VALUES (2, 3, 2)
+INSERT [dbo].[Favorites] ([favorite_id], [user_id], [book_id]) VALUES (3, 4, 3)
+INSERT [dbo].[Favorites] ([favorite_id], [user_id], [book_id]) VALUES (4, 5, 4)
+INSERT [dbo].[Favorites] ([favorite_id], [user_id], [book_id]) VALUES (5, 1, 5)
+SET IDENTITY_INSERT [dbo].[Favorites] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Users] ON 
+
+INSERT [dbo].[Users] ([user_id], [username], [password], [email], [role], [created_at], [updated_at], [account]) VALUES (1, N'doraemon', N'password123', N'admin@example.com', N'admin', CAST(N'2024-11-04T14:40:55.267' AS DateTime), CAST(N'2024-11-04T14:40:55.267' AS DateTime), NULL)
+INSERT [dbo].[Users] ([user_id], [username], [password], [email], [role], [created_at], [updated_at], [account]) VALUES (2, N'john_doe', N'password456', N'john@example.com', N'user', CAST(N'2024-11-04T14:40:55.267' AS DateTime), CAST(N'2024-11-04T14:40:55.267' AS DateTime), NULL)
+INSERT [dbo].[Users] ([user_id], [username], [password], [email], [role], [created_at], [updated_at], [account]) VALUES (3, N'jane_smith', N'password789', N'jane@example.com', N'user', CAST(N'2024-11-04T14:40:55.267' AS DateTime), CAST(N'2024-11-04T14:40:55.267' AS DateTime), NULL)
+INSERT [dbo].[Users] ([user_id], [username], [password], [email], [role], [created_at], [updated_at], [account]) VALUES (4, N'alice_jones', N'password321', N'alice@example.com', N'user', CAST(N'2024-11-04T14:40:55.267' AS DateTime), CAST(N'2024-11-04T14:40:55.267' AS DateTime), NULL)
+INSERT [dbo].[Users] ([user_id], [username], [password], [email], [role], [created_at], [updated_at], [account]) VALUES (5, N'bob_brown', N'password654', N'bob@example.com', N'user', CAST(N'2024-11-04T14:40:55.267' AS DateTime), CAST(N'2024-11-04T14:40:55.267' AS DateTime), NULL)
+SET IDENTITY_INSERT [dbo].[Users] OFF
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Users__AB6E616477D61F23]    Script Date: 06/11/2024 11:24:47 SA ******/
+ALTER TABLE [dbo].[Users] ADD UNIQUE NONCLUSTERED 
+(
+	[email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+SET ANSI_PADDING ON
+GO
+/****** Object:  Index [UQ__Users__F3DBC572687E8711]    Script Date: 06/11/2024 11:24:47 SA ******/
+ALTER TABLE [dbo].[Users] ADD UNIQUE NONCLUSTERED 
+(
+	[username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Books] ADD  DEFAULT (getdate()) FOR [created_at]
+GO
+ALTER TABLE [dbo].[Books] ADD  DEFAULT (getdate()) FOR [updated_at]
+GO
+ALTER TABLE [dbo].[Books] ADD  DEFAULT ((0)) FOR [quantity_available]
+GO
+ALTER TABLE [dbo].[Borrowings] ADD  DEFAULT (getdate()) FOR [loan_date]
+GO
+ALTER TABLE [dbo].[Cart] ADD  DEFAULT ((1)) FOR [quantity]
+GO
+ALTER TABLE [dbo].[Users] ADD  DEFAULT (getdate()) FOR [created_at]
+GO
+ALTER TABLE [dbo].[Users] ADD  DEFAULT (getdate()) FOR [updated_at]
+GO
+ALTER TABLE [dbo].[Borrowings]  WITH CHECK ADD FOREIGN KEY([book_id])
+REFERENCES [dbo].[Books] ([book_id])
+GO
+ALTER TABLE [dbo].[Borrowings]  WITH CHECK ADD FOREIGN KEY([user_id])
+REFERENCES [dbo].[Users] ([user_id])
+GO
+ALTER TABLE [dbo].[Cart]  WITH CHECK ADD FOREIGN KEY([book_id])
+REFERENCES [dbo].[Books] ([book_id])
+GO
+ALTER TABLE [dbo].[Cart]  WITH CHECK ADD FOREIGN KEY([user_id])
+REFERENCES [dbo].[Users] ([user_id])
+GO
+ALTER TABLE [dbo].[Favorites]  WITH CHECK ADD FOREIGN KEY([book_id])
+REFERENCES [dbo].[Books] ([book_id])
+GO
+ALTER TABLE [dbo].[Favorites]  WITH CHECK ADD FOREIGN KEY([user_id])
+REFERENCES [dbo].[Users] ([user_id])
+GO
+ALTER TABLE [dbo].[Books]  WITH CHECK ADD CHECK  (([quantity_available]>=(0)))
+GO
+ALTER TABLE [dbo].[Borrowings]  WITH CHECK ADD CHECK  (([status]='returned' OR [status]='borrowed'))
+GO
+ALTER TABLE [dbo].[Users]  WITH CHECK ADD CHECK  (([role]='user' OR [role]='admin'))
+GO
+USE [master]
+GO
+ALTER DATABASE [Library] SET  READ_WRITE 
+GO
