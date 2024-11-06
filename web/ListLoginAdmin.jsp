@@ -1,10 +1,4 @@
-<%-- 
-    Document   : dashboard
-    Created on : Nov 4, 2024, 9:52:45 PM
-    Author     : Dinh Van Do - CE182224
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,30 +6,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FPTU Library</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
         <style>
             /* Custom styles for the library interface */
+            body {
+                font-family: 'Poppins', sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f9;
+            }
+
+            /* Header styles */
             .header {
-                background-color: #fff;
-                border-bottom: 2px solid #ddd;
+                background-color: #ffffff;
+                border-bottom: 2px solid #f1f1f1;
                 padding: 20px 0;
             }
+
             .logo img {
                 height: 80px;
                 width: 160px;
-                margin-right: 10px;
             }
+
             .title {
-                font-size: 35px;
+                font-size: 36px;
                 color: #e74c3c;
-                font-weight: bold;
+                font-weight: 600;
             }
+
             .nav-item:hover {
-                background-color: #f0f0f0; /* Màu xám nhạt */
+                background-color: #f0f0f0;
             }
+
             .subtitle {
                 font-size: 16px;
-                color: #e67e22;
+                color: #f39c12;
             }
+
             .hours {
                 font-weight: bold;
                 font-size: 14px;
@@ -46,43 +53,103 @@
                 color: #3498db;
                 text-decoration: none;
             }
-            .nav-link{
-                font-weight: bold;
 
-            }
             .search-bar {
                 background-color: rgba(255, 153, 0, 0.8);
-                padding: 20px;
+                padding: 25px;
                 margin-top: -50px;
                 text-align: center;
+                border-radius: 8px;
             }
-            .footer {
-                background-color: #ff6600;
+
+            .search-bar input {
+                width: 60%;
+                padding: 10px;
+                font-size: 18px;
+                border: none;
+                border-radius: 8px;
+                margin-right: 10px;
+            }
+
+            .search-bar button {
+                padding: 10px 20px;
+                font-size: 16px;
+                border: none;
+                background-color: #f39c12;
                 color: white;
-                padding: 20px;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+
+            .search-bar button:hover {
+                background-color: #e67e22;
+            }
+
+            /* Footer styles */
+            .footer {
+                background-color: #f39c12;
+                color: white;
+                padding: 40px 0;
                 text-align: center;
             }
+
+            .footer h6 {
+                font-weight: 600;
+            }
+
             .footer .stats {
                 text-align: left;
                 color: white;
             }
-            .logo-img{
+
+            .footer .logo-img {
                 border-radius: 50%;
+                margin: 10px;
             }
             .content-section {
-                background-image: url('img/tv2.jpeg'); /* Đường dẫn đến ảnh nền */
-                background-repeat: no-repeat; /* Không lặp ảnh */
-                background-position: center; /* Căn giữa ảnh */
-                padding: 40px; /* Khoảng cách padding cho nội dung */
-                border-radius: 8px; /* Tùy chọn: Bo tròn các góc */
+                background-image: url('img/tv2.jpeg');
+                background-repeat: no-repeat;
+                background-position: center;
+                padding: 50px;
+                border-radius: 8px;
                 background-size: cover;
+                margin-top: 30px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             }
-            .tieude{
-                color:#333;
+
+            .tieude {
+                color: #333;
                 font-size: 40px;
+                font-weight: 600;
+                text-transform: uppercase;
             }
 
+            .navbar {
+                background-color: #f39c12;
+            }
 
+            .navbar-nav .nav-link {
+                font-weight: bold;
+                color: white;
+                text-transform: uppercase;
+            }
+
+            .navbar-nav .nav-link:hover {
+                background-color: #e67e22;
+                color: white;
+            }
+
+            .navbar-toggler-icon {
+                background-color: white;
+            }
+
+            /* Add media queries for responsiveness */
+            @media (max-width: 767px) {
+                .search-bar input {
+                    width: 80%;
+                    margin-bottom: 10px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -93,10 +160,9 @@
                 <div class="row align-items-center">
                     <!-- Logo and Title Section -->
                     <div class="col-md-4 d-flex align-items-center justify-content-center logo">
-                        <a  href="index.jsp">
-                            <img  src="img/logo1.png" alt="FPT Logo">
+                        <a href="index.jsp">
+                            <img src="img/logo1.png" alt="FPT Logo">
                         </a>
-
                     </div>
 
                     <!-- Welcome Message and Opening Hours -->
@@ -106,68 +172,32 @@
                     </div>
 
                     <!-- Language and Login Section -->
-                    <div class="col-md-4 text-center  login-section">
-                        <span>Vietnamese</span> |${sessionScope.username} <a href="index.jsp">logOut</a>
+                    <div class="col-md-4 text-center login-section">
+                        <span>Vietnamese</span> | ${sessionScope.username} <a href="index.jsp">Log Out</a>
                     </div>
                 </div>
             </div>
         </header>
 
         <!-- Navigation Menu -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
-
-                <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                    <ul class="navbar-nav ">
-                        <li class="nav-item"><a class="nav-link" href="information.jsp">Information Book</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gioithieu.jsp">ManageBook</a></li>
-                        <li class="nav-item"><a class="nav-link" href="noiquy.jsp">Debt repayment list</a></li>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="listBook">Information Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="bookInfo.jsp">Manage Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="borrowReturnList.jsp">Debt Repayment List</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
-
         <!-- Main Content -->
         <div class="container my-5 content-section">
-            <h3 class="text-center mb-4 tieude">How to use FPTU Library</h3>
-            <div class="row text-center ">
-
-                <div class="col-md-6 ">
-                    <button class="btn btn-warning btn-lg">Books24x7</button>
-                </div>
-                <div class="col-md-6 ">
-                    <button class="btn btn-warning btn-lg">OPAC</button>
-                </div>
-            </div>
-
-            <h3 class="text-center my-5 tieude">News & Events</h3>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card text-center">
-                        <img src="img/submit.jpg" class="card-img-top mx-auto d-block" alt="Announcement" style="width:75%; height:auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Important Announcement</h5>
-                            <p class="card-text">Lịch nhận sách giáo trình tiếng Anh chuẩn bị Part 2 kỳ Fall 2024...</p>
-                            <a href="#" class="btn btn-primary">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="card">
-                        <img src="img/java.jpg" style="width:40%; height:auto;" class="card-img-top mx-auto d-block" alt="Exchange Book Day">
-                        <div class="card-body text-center">
-                            <h5 class="card-title ">Top 10 cuốn sách mượn nhiều nhất</h5>
-                            <p class="card-text ">Top 10 cuốn sách được sinh viên mượn nhiều nhất </p>
-                            <a href="#" class="btn btn-primary ">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- You can add more content here -->
         </div>
 
         <!-- Footer -->
@@ -179,21 +209,21 @@
                         <p>Phòng 107 tòa nhà Delta, Trường Đại học FPT, Khu CNC Hòa Lạc, Km29 Đại Lộ Thăng Long, Thạch Thất, Hà Nội</p>
                         <p>Email: thuvien_fu_hoalac@fpt.edu.vn | Phone: 02466 805 912</p>
                     </div>
-                    <div class="col-md-4 ">
-
+                    <div class="col-md-4 text-center">
                         <a target="_blank" href="https://www.facebook.com/thuviendaihocfpt">
-                            <img src="img/fb.jpg" alt="FPT Logo" class="logo-img" width="50" height="50 class="logo-img"">
+                            <img src="img/fb.jpg" alt="Facebook Logo" class="logo-img" width="50" height="50">
                         </a>
-
                     </div>
                     <div class="col-md-4 stats">
                         <h6>WEBSITE ACCESS STATISTICS</h6>
                         <p>Online: 213</p>
+                        <p>Total Books: ${totalBooks}</p>
+                        <p>Books in Stock: ${booksInStock}</p>
+                        <p>Total Users: ${totalUsers}</p>
                         <p>Today: 9559 | Yesterday: 16215</p>
                         <p>This month: 38161 | Last month: 402460</p>
                         <p>Total visits: 6043173</p>
                     </div>
-
                 </div>
             </div>
         </div>
