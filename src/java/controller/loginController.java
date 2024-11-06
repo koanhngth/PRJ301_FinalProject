@@ -108,7 +108,7 @@ public class loginController extends HttpServlet {
                 if ("admin".equals(username)) {
                     request.getRequestDispatcher("ListLoginAdmin.jsp").forward(request, response);
                 } else {
-                    response.sendRedirect("listUser.jsp");
+                    response.sendRedirect("listLoginUser.jsp");
                 }
 
             } else {

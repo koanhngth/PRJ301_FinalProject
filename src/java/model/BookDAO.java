@@ -93,7 +93,8 @@ public class BookDAO extends dal.DBContext {
     }
 
     public boolean deleteBook(String book_id) {
-        String query = "DELETE FROM Books WHERE book_id = ?";
+        String query = "DELETE FROM [dbo].[Books]\n" +
+"      WHERE book_id=?";
         try ( PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, book_id);
             int rs = pstmt.executeUpdate();

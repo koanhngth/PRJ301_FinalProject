@@ -160,7 +160,7 @@
                 <div class="row align-items-center">
                     <!-- Logo and Title Section -->
                     <div class="col-md-4 d-flex align-items-center justify-content-center logo">
-                        <a href="ListLoginAdmin.jsp">
+                        <a href="listLoginUser.jsp">
                             <img src="img/logo1.png" alt="FPT Logo">
                         </a>
                     </div>
@@ -173,8 +173,11 @@
 
                     <!-- Language and Login Section -->
                     <div class="col-md-4 text-center login-section">
-                        <span>Vietnamese</span> | ${sessionScope.username} <a href="index.jsp">Log Out</a>
+                        <span>Vietnamese</span> |
+                        <a href="info_account.jsp">${sessionScope.username}</a> |
+                        <a href="index.jsp">Log Out</a>
                     </div>
+
                 </div>
             </div>
         </header>
@@ -184,20 +187,55 @@
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                </button>/-strong/-heart:>:o:-((:-h <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="listLoginUser.jsp">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="listBook">Information Book</a></li>
-                        <li class="nav-item"><a class="nav-link" href="admininfo">Manage Book</a></li>
-                        
+                        <li class="nav-item"><a class="nav-link" href="listLoginUser.jsp">Manage Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="listLoginUser.jsp">Debt Repayment List</a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://www.facebook.com/thuviendaihocfpt">Help/Support</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
 
         <!-- Main Content -->
-        <div class="container my-5 content-section" >
-            <!-- You can add more content here -->
+        <div class="container my-5 content-section">
+            <h3 class="text-center mb-4 tieude">What will you borrow when you come to FPTU?</h3>
+            <div class="row text-center ">
+
+                <div class="col-md-6 ">
+                    <button class="btn btn-warning btn-lg">Novel</button>
+                </div>
+                <div class="col-md-6 ">
+                    <button class="btn btn-warning btn-lg">Science books</button>
+                </div>
+            </div>
+
+            <h3 class="text-center my-5 tieude">Top & recommendations</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card text-center">
+                        <img src="https://th.bing.com/th/id/R.db449967a7bb58a057190ea532a55de3?rik=42iwI0qu49alsg&riu=http%3a%2f%2fbizweb.dktcdn.net%2fthumb%2fgrande%2f10...gRaw&r=0" class="card-img-top mx-auto d-block" alt="Announcement" style="width:75%; height:auto;">
+                        <div class="card-body">
+                            <h5 class="card-title">Gone with the Wind</h5>
+                            <p class="card-text">The #1 bestselling classic of all time</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card">
+                        <img src="https://th.bing.com/th/id/OIP.BN7-6CosrXxQ_I5jb_fhIAHaLD?rs=1&pid=ImgDetMain" style="width:40%; height:auto;" class="card-img-top mx-auto d-block" alt="Exchange Book Day">
+                        <div class="card-body text-center">
+                            <h5 class="card-title ">Origin of species</h5>
+                            <p class="card-text ">One of the top 10 best and most worth reading books </p>
+                            <a href="#" class="btn btn-primary ">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                </div>
         </div>
 
         <!-- Footer -->
