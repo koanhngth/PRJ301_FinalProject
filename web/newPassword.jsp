@@ -27,16 +27,16 @@
             <input type="hidden" name="otp" value="${sessionScope.otp}">
              <div class="form-group">
                 <label for="text">OTP:</label>
-                <input type="int" name="OTP" class="form-control" id="OTP" placeholder="Enter OTP" required>
+                <input type="String" name="OTP" class="form-control" id="OTP" placeholder="Enter OTP" required>
                 <div class="invalid-feedback">Please enter a valid email address!</div>
             </div>
              <div class="form-group">
                 <label for="string">Username:</label>
-                <input type="string" name="user" class="form-control" id="user" value="<%= request.getAttribute("user") %>" readonly>
+                <input type="String" name="user" class="form-control" id="user" value="<%= request.getAttribute("user") %>" readonly>
                 <div class="invalid-feedback">Please enter a valid email address!</div>
             </div>
             <div class="form-group">
-                <label for="string">New Password:</label>
+                <label for="String">New Password:</label>
                 <input type="password" name="newPass" class="form-control" id="newPass" placeholder="Enter new password" required>
                 <div class="invalid-feedback">Please enter a valid email address!</div>
             </div>

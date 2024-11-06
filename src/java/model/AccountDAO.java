@@ -26,7 +26,7 @@ public class AccountDAO extends dal.DBContext {
         String query = "select username, password from Users where username = ? and password = ?";
         try ( PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setString(1, username);
-            pstmt.setString(2, password);  
+            pstmt.setString(2, password);
 
             try ( ResultSet rs = pstmt.executeQuery()) {
                 return rs.next();
@@ -52,7 +52,7 @@ public class AccountDAO extends dal.DBContext {
         return null;
     }
 
-     public boolean getEmail(String email, String user) {
+    public boolean getEmail(String email, String user) {
         String sql = "SELECT * FROM Users WHERE email = ? AND username = ? ";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -67,7 +67,7 @@ public class AccountDAO extends dal.DBContext {
         }
         return false;
     }
-     
+
     public boolean addAccount(Account account) {
         String query = "INSERT INTO [dbo].[Users] ([username], [password], [email], [role]) VALUES (?, ?, ?, ?)";
 
@@ -86,38 +86,39 @@ public class AccountDAO extends dal.DBContext {
 
         return false;
     }
-    public void updatePassword(String pass , String user) {
-        String sql = "UPDATE [dbo].[Users] "
-                + "SET  password = ?"
-                + "WHERE username = ?";
 
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
+    public void updatePassword(String pass, String user) {
+        String sql = "UPDATE [dbo].[Users]\n"
+                + "   SET \n"
+                + "      [password] = ?\n"
+                + "      \n"
+                + " WHERE [username]=?";
+
+        try ( PreparedStatement st = connection.prepareStatement(sql)) {
+
             st.setString(1, pass);
             st.setString(2, user);
-            
 
-            int rowsAffected = st.executeUpdate();
-            
+            st.executeUpdate();
+
         } catch (Exception e) {
             e.printStackTrace(); // Ghi lại lỗi để dễ dàng kiểm tra
         }
     }
-  
-    
+
     public boolean isAccountExists(String username) {
-    String query = "SELECT COUNT(*) FROM Users WHERE username = ?";
-    try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-        pstmt.setString(1, username);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next() && rs.getInt(1) > 0) {
-            return true;
+        String query = "SELECT COUNT(*) FROM Users WHERE username = ?";
+        try ( PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setString(1, username);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return false;
     }
-    return false;
-} 
 
 //    public static void main(String[] args) throws SQLException {
 //        AccountDAO pd = new AccountDAO();

@@ -3,12 +3,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FPT_Semester_4/PRJ/Baitap/User_manage/web/info_account.jsp</file>
-            <file>file:/D:/FPT_Semester_4/PRJ/Baitap/User_manage/web/add_user.jsp</file>
-            <file>file:/D:/FPT_Semester_4/PRJ/Baitap/User_manage/src/java/controller/infoUser.java</file>
-            <file>file:/D:/FPT_Semester_4/PRJ/Baitap/User_manage/src/java/controller/editUser.java</file>
-            <file>file:/D:/FPT_Semester_4/PRJ/Baitap/User_manage/src/java/model/UserDAO.java</file>
-            <file>file:/D:/FPT_Semester_4/PRJ/Baitap/User_manage/src/java/controller/addUser.java</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/src/java/controller/deleteUser.java</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/src/java/dal/DBContext.java</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/src/java/controller/addUser.java</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/src/java/controller/SendRandomCodeServlet.java</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/src/java/controller/loginController.java</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/info_account.jsp</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/index.jsp</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/add_user.jsp</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/src/java/controller/infoUser.java</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/img/thuvien.jpg</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/edit_user.jsp</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/gioithieu.jsp</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/src/java/controller/editUser.java</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/img/logo1.png</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/img/java.jpg</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/noiquy.jsp</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/error_page.jsp</file>
+            <file>file:/D:/Assignment/PRJ301_FinalProject/web/img/fb.jpg</file>
         </group>
     </open-files>
 </project-private>
