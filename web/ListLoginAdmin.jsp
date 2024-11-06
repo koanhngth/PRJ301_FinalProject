@@ -107,7 +107,7 @@
 
                     <!-- Language and Login Section -->
                     <div class="col-md-4 text-center  login-section">
-                        <span>Vietnamese</span> | <a href="Login.jsp">Login</a>
+                        <span>Vietnamese</span> |${sessionScope.username} <a href="index.jsp">logOut</a>
                     </div>
                 </div>
             </div>
@@ -122,12 +122,9 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav ">
-                        <li class="nav-item"><a class="nav-link" href="index.jsp">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="gioithieu.jsp">Giới thiệu</a></li>
-                        <li class="nav-item"><a class="nav-link" href="noiquy.jsp">Nội quy</a></li>
-<!--                        <li class="nav-item"><a class="nav-link" href="#">Dịch vụ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Bộ sưu tập</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Tin tức</a></li>-->
+                        <li class="nav-item"><a class="nav-link" href="information.jsp">Information Book</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gioithieu.jsp">ManageBook</a></li>
+                        <li class="nav-item"><a class="nav-link" href="noiquy.jsp">Debt repayment list</a></li>
                     </ul>
                 </div>
             </div>

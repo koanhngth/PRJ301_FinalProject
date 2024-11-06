@@ -107,7 +107,7 @@
 
                     <!-- Language and Login Section -->
                     <div class="col-md-4 text-center  login-section">
-                        <span>Vietnamese</span> | <a href="#">Login</a>
+                        <span>Vietnamese</span> | <a href="Login.jsp">Login</a>
                     </div>
                 </div>
             </div>
