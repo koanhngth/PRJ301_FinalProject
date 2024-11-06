@@ -187,7 +187,7 @@
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>/-strong/-heart:>:o:-((:-h <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                </button> <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="listLoginUser.jsp">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="listBook">Information Book</a></li>
